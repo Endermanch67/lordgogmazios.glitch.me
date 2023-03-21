@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html>
+ 
+  <title> Error 404</title>
+  <link rel="stylesheet" href="style.css" />
+
+<html>
+  <head>
+    <title>About Blank Page</title>
+    <script>
+      function updateIframe() {
+        const inputUrl = document.getElementById("input-url").value;
+        const iframe = document.getElementById("my-iframe");
+        iframe.src = inputUrl;
+      }
+    </script>
+  </head>
+  <body>
+    <form>
+      <label for="input-url">Enter the URL(Use https:// !!!):</label>
+      <input type="text" id="input-url" name="input-url">
+      <button type="button" onclick="updateIframe()">Embed</button>
+    </form>
+    <iframe id="my-iframe" src="" frameborder="0"></iframe>
+  </body>
+</html>
+
+
+
+<html>
+<head>
+	<title>Open New Window Example</title>
+	<script>
+		function openWindow() {
+			var myWindow = window.open("https://www.google.com", "myWindow", "width=500,height=500,edge=yes");
+		}
+	</script>
+</head>
+<body>
+	<h1>Open New Window</h1>
+	<button onclick="openWindow()">Open Window</button>
+</body>
+</html>
+
+<html>
+  <button onclick="goToLink()">About Blank embed</button>
+    
+    <script>
+      function goToLink() {
+        window.location.href = "https://gogmaziosalt.glitch.me/";
+      }
+      
+      </script>
+</html>
+  
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Bookmarklet Converter</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+      }
+      
+      h1 {
+        text-align: center;
+      }
+      
+      label {
+        display: block;
+        margin-bottom: 10px;
+      }
+      
+      textarea {
+        display: block;
+        margin-bottom: 20px;
+        width: 100%;
+        height: 150px;
+        border: 1px solid #ccc;
+        padding: 5px;
+        font-size: 14px;
+      }
+      
+      button {
+        display: block;
+        margin-bottom: 20px;
+        padding: 5px 10px;
+        font-size: 16px;
+        border: none;
+        background-color: #007bff;
+        color: #fff;
+        cursor: pointer;
+        border-radius: 3px;
+      }
+      
+      button:hover {
+        background-color: #0069d9;
+      }
+      
+      #output {
+        font-family: monospace;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Bookmarklet Converter</h1>
+    <label for="input">Input:</label>
+    <textarea id="input" placeholder="Enter JavaScript code here"></textarea>
+    <button onclick="jsToBookmarklet()">Convert to Bookmarklet</button>
+    <label for="output">Bookmarklet:</label>
+    <textarea id="output" placeholder="Result will appear here"></textarea>
+    <button onclick="runBookmarklet()">Run Bookmarklet</button>
+    <script>
+      function jsToBookmarklet() {
+        const js = document.getElementById("input").value;
+        const bookmarklet = `javascript:${encodeURIComponent(js)}`;
+        document.getElementById("output").value = bookmarklet;
+      }
+      
+      function runBookmarklet() {
+        const bookmarklet = document.getElementById("output").value;
+        window.location.href = bookmarklet;
+      }
+    </script>
+  </body>
+</html>
+  
+  
+  <html>
+    <br>
+<br>
+    <label for="bookmarkletInput">Enter bookmarklet code:</label>
+<textarea id="bookmarkletInput"></textarea>
+<button onclick="bookmarkletToJs()">Convert to JS</button>
+<label for="jsOutput">JS output:</label>
+<textarea id="jsOutput"></textarea>
+
+<script>
+  function bookmarkletToJs() {
+    const bookmarklet = document.getElementById("bookmarkletInput").value;
+    const js = decodeURIComponent(bookmarklet.replace(/^javascript:/, ""));
+    document.getElementById("jsOutput").value = js;
+  }
+</script>
+	<label for="url">About:Blank Embed:</label>
+	<input type="text" id="url">
+	<button onclick="loadWebsite()">Load Website</button>
+
+<script>
+	function loadWebsite() {
+		var url = document.getElementById("url").value;
+		if (url.startsWith("https://")) {
+			var newWindow = window.open();
+			newWindow.document.write("<iframe src='" + url + "' style='width: 100vw; height: 100vh;'></iframe>");
+		} else {
+			alert("Please enter a valid HTTPS website URL");
+		}
+	}
+</script>
+    <style>
+	input {
+		padding: 10px;
+		border: 1px solid #ccc;
+		border-radius: 5px;
+		font-size: 16px;
+		width: 80%;
+		margin-bottom: 10px;
+	}
+
+	input:focus {
+		outline: none;
+		border-color: #3f51b5;
+	}
+</style>
+
+
+  
+
+  </html>
+        
+        
+
+
+
+    
+<im src="https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/736d9401-ae2e-4f9e-91e2-b75d3ac885ad/d9bhk0h-14130dce-0ae7-40bb-927b-b48459db9d12.jpg/v1/fill/w_1600,h_965,q_75,strp/gogmazios__the_giant_halberd_dragon_by_halycon450_d9bhk0h-fullview.jpg?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7ImhlaWdodCI6Ijw9OTY1IiwicGF0aCI6IlwvZlwvNzM2ZDk0MDEtYWUyZS00ZjllLTkxZTItYjc1ZDNhYzg4NWFkXC9kOWJoazBoLTE0MTMwZGNlLTBhZTctNDBiYi05MjdiLWI0ODQ1OWRiOWQxMi5qcGciLCJ3aWR0aCI6Ijw9MTYwMCJ9XV0sImF1ZCI6WyJ1cm46c2VydmljZTppbWFnZS5vcGVyYXRpb25zIl19.1AfDxV2bpAyduiXNKsggeaqptFnuy13uHREdYUtnA1U" alt="Gogmazios, the Giant Halberd Dragon by Halycon450 on DeviantArt"/>

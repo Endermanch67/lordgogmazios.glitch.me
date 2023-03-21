@@ -1,72 +1,159 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <!-- 
-      This is an HTML comment
-      You can write text in a comment and the content won't be visible in the page
-    -->
 
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link rel="icon" href="https://glitch.com/favicon.ico" />
+<html>
+<head>
+	<!DOCTYPE html>
+<html>
+<head>
+	<style>
+		/* Style for the 3 line button */
+		#menu-btn {
+			display: block;
+			position: fixed;
+			top: 10px;
+			left: 10px;
+			width: 30px;
+			height: 30px;
+			cursor: pointer;
+			z-index: 1;
+		}
+		#menu-btn span {
+			display: block;
+			height: 4px;
+			background-color: #fff;
+			margin-bottom: 6px;
+			border-radius: 4px;
+		}
 
-    <!--
-      This is the page head - it contains info the browser uses
-      Like the title, which appears on the browser tab but not inside the page
-      Further down you'll see the content that displays in the page
-    -->
-    <title>Hello World!</title>
+		/* Style for the side panel */
+		#side-panel {
+			position: fixed;
+			top: 0;
+			left: -300px;
+			width: 300px;
+			height: 100%;
+			background-color: #333;
+			color: #fff;
+			z-index: 1;
+			transition: all 0.3s ease-in-out;
+			box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+		}
+		#side-panel.darken {
+			background-color: rgba(0, 0, 0, 0.8);
+		}
+		#side-panel.active {
+			left: 0;
+		}
+		#side-panel h2 {
+			margin: 20px;
+			font-size: 24px;
+			text-align: center;
+		}
+        #close-btn {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            cursor: pointer;
+            font-size: 20px;
+        }
 
-    <!-- The website stylesheet -->
-    <link rel="stylesheet" href="/style.css" />
+		/* Style for the page content */
+		#page-content {
+			position: relative;
+			left: 0;
+			transition: all 0.3s ease-in-out;
+		}
+		#page-content.active {
+			left: 300px;
+		}
+        /* Style for hyperlinks */
+        a {
+            color: #fff;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 16px;
+            display: block;
+            margin-top: 20px;
+            text-align: center;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+	</style>
+</head>
+<body>
+	<div id="menu-btn" onclick="toggleMenu()">
+		<span></span>
+		<span></span>
+		<span></span>
+	</div>
+	<div id="side-panel">
+        <div id="close-btn" onclick="toggleMenu()">&times;</div>
+		<h2>Side Panel</h2>
+		Parts to other webpages
+        <a href="index.html">Main Page</a>
+        <a href="proxy.html">JS And About:Blank embeds</a>
+	</div>
+	<div id="page-content">
+		
 
-    <!-- The website JavaScript file -->
-    <script src="/script.js" defer></script>
-  </head>
-  <body>
-    <!--
-      The body includes the content you see in the page
-      Each element is defined using tags, like this <div></div>
-      The attributes like class="wrapper" let us style elements in the CSS
-    -->
-    <div class="wrapper">
-      <div class="content" role="main">
-        <h1 class="title">Hello World!</h1>
-        <img
-          src="https://cdn.glitch.com/a9975ea6-8949-4bab-addb-8a95021dc2da%2Fillustration.svg?v=1618177344016"
-          class="illustration"
-          alt="Editor illustration"
-          title="Click the image!"
-        />
-        <div class="instructions">
-          <h2>Using this project</h2>
-          <p>
-            This is the Glitch <strong>Hello Website</strong> project. You can
-            use it to build your own site. Check out the code in the editor and open
-            the <span class="fileopener" data-file="TODO.md" data-line="0"
-              >TODO</span> for next steps!
-          </p>
-          <!--  🚧 TODO: ADD BUTTON HERE -->
-
-          <!-- Once you've added the button from TODO.md, click it in the page -->
-          <!-- Check out the function in script.js to see how it works -->
-        </div>
-      </div>
-    </div>
-    <!-- The footer holds our remix button — you can keep or delete it ✂ -->
-    <footer class="footer">
-      <div class="links"></div>
-      <a
-        class="btn--remix"
-        target="_top"
-        href="https://glitch.com/edit/#!/remix/glitch-hello-website"
-      >
-        <img
-          src="https://cdn.glitch.com/605e2a51-d45f-4d87-a285-9410ad350515%2FLogo_Color.svg?v=1618199565140"
-          alt=""
-        />
-        Remix on Glitch
-      </a>
-    </footer>
-  </body>
+	</div>
+	<script>
+		function toggleMenu() {
+			document.getElementById("side-panel").classList.toggle("active");
+			document.getElementById("page-content").classList.toggle("active");
+			document.body.classList.toggle("darken");
+		}
+	</script>
+</body>
 </html>
+
+<html>
+  
+
+
+  <head> </head>
+  <link rel="icon" href="https://manage.goguardian.com/favicon.ico" />
+  <link rel="stylesheet" href="style.css" />
+  <link href="proxy" />
+  <title>How to Math</title>
+  
+
+
+  <h1>Gogmazios' Site</h1>
+  <p>This site was designed by your almighty GOGMAZIOS!</p>
+
+  <p>
+    I have learned how to code a while ago, but I decided to put my skill to the
+    test.
+  </p>
+
+  <p>Right now I have put good bypasses to bypass school extensions like:</p>
+
+  <p>Goguardian</p>
+  <p>Securly</p>
+  <p>Lightspeed</p>
+
+  <p>Gopher buddy</p>
+  <p>AND MORE</p>
+  <button type="button">Gogmazios</button>
+</html>
+<html>
+<head>
+	<title>Button to Another Page</title>
+</head>
+
+</body>
+</html>
+
+<html>
+
+
+
+
+
+
+
+
+

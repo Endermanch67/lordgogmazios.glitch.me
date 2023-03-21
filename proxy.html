@@ -155,8 +155,24 @@
 <script>
 var txt = "";document.write("<center><input type='button' value = 'Version Notes' onclick='note()' /><hr><iframe width='1000' height='500' src='google.com' name='embed_iframe'></iframe><hr><input type='button' value = 'Reset Tab' onclick='history.go(0)' /> <a href='google.com' target='embed_iframe'><button>Reset Embed Iframe</button></a><button onclick='surl()'>Go to specified url</button><h3></h3><p>v1.3</p></center>");function note(){alert("Added go to specified url button");};function surl(){var txt = prompt("insert url"); embed_iframe.location.href=txt;};
 </script>
-    
-    <button onclick="openChrome()">Open Chrome in Incognito Mode</button>
+     <button onclick="openGoogle()">Open Google in New Tab</button>
+
+  <script>
+    function openGoogle() {
+      var win = window.open('https://www.google.com/', '_blank');
+      win.focus();
+    }
+  </script>
+
+ <style>
+    iframe {
+      border: none;
+      width: 100%;
+      height: 100%;
+    }
+  </style>
+</head>
+<body>
 
 
 

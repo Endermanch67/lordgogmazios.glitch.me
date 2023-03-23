@@ -1,32 +1,27 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>Bookmarklet Emulator</title>
-  </head>
-  <body>
-    <textarea id="bookmarkletCode" rows="10" cols="50" placeholder="Paste bookmarklet code here"></textarea>
-    <br>
-    <label for="targetWindow">Target Window:</label>
-    <select id="targetWindow">
-      <option value="_self">Current Page</option>
-      <option value="_blank">New Tab</option>
-      <option value="newWindow">New Window</option>
-    </select>
-    <br>
-    <button onclick="runBookmarklet()">Run</button>
-    
-    <script>
-      function runBookmarklet() {
-        var code = document.getElementById('bookmarkletCode').value.trim();
-        if (code) {
-          var targetWindow = document.getElementById('targetWindow').value;
-          if (targetWindow === 'newWindow') {
-            window.open('javascript:(' + code + ')()', '_blank');
-          } else {
-            window.open('javascript:(' + code + ')()', targetWindow);
-          }
-        }
+<head>
+  <meta charset="UTF-8">
+  <title>Bookmarklet Emulator</title>
+</head>
+<body>
+  <label for="bookmarklet-code">Enter bookmarklet code:</label>
+  <br>
+  <textarea id="bookmarklet-code"></textarea>
+  <br>
+  <button onclick="runBookmarklet()">Run</button>
+  
+  <script>
+    function runBookmarklet() {
+      var code = document.getElementById("bookmarklet-code").value;
+      if (code !== "") {
+        var script = document.createElement("script");
+        script.innerHTML = code;
+        document.body.appendChild(script);
+      } else {
+        alert("Please enter bookmarklet code.");
       }
-    </script>
-  </body>
+    }
+  </script>
+</body>
 </html>

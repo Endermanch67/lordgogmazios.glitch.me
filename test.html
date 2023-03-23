@@ -1,216 +1,28 @@
-<!DOCTYPE html>
-<html>
-  <link rel="stylesheet" href="gog.css" />
-  <button id="copy-url">Copy URL</button>
-  <script>
-    function copyChildren(a, b) {
-      var i, nn;
-      for (i = 0; i < a.childNodes.length; ++i) {
-        nn = a.childNodes[i].cloneNode(true);
-        if (nd.importNode) nn = nd.importNode(nn, true);
-        b.appendChild(nn);
-      }
-    }
-
-    document.getElementById("copy-url").addEventListener("click", function () {
-      var url = prompt("Enter the URL to copy:");
-      if (url) {
-        var xhr = new XMLHttpRequest();
-        xhr.open("GET", url);
-        xhr.onload = function () {
-          nd = window.open().document;
-          nd.open();
-          nd.close();
-          copyChildren(
-            this.responseXML.getElementsByTagName("head")[0],
-            nd.getElementsByTagName("head")[0]
-          );
-          copyChildren(this.responseXML.body, nd.body);
-        };
-        xhr.send();
-      }
-    });
-  </script>
-</html>
-<html>
-  <h1>Disable Extension by ID</h1>
-  <input type="text" id="extensionId" placeholder="Enter Extension ID" />
-  <button onclick="disableExtension()">Disable Extension</button>
-
-  <script>
-    function disableExtension() {
-      const extensionId = document.getElementById("extensionId").value;
-      chrome.management.setEnabled(extensionId, false, function () {
-        alert(`Extension ${extensionId} disabled.`);
-      });
-    }
-  </script>
-</html>
-<html>
- <!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="UTF-8">
-    <title>Bookmarklet Converter</title>
-    <style>
-      body {
-        font-family: Arial, sans-serif;
-      }
-      
-      h1 {
-        text-align: center;
-      }
-      
-      label {
-        display: block;
-        margin-bottom: 10px;
-      }
-      
-      textarea {
-        display: block;
-        margin-bottom: 20px;
-        width: 100%;
-        height: 150px;
-        border: 1px solid #ccc;
-        padding: 5px;
-        font-size: 14px;
-      }
-      
-      button {
-        display: block;
-        margin-bottom: 20px;
-        padding: 5px 10px;
-        font-size: 16px;
-        border: none;
-        background-color: #007bff;
-        color: #fff;
-        cursor: pointer;
-        border-radius: 3px;
-      }
-      
-      button:hover {
-        background-color: #0069d9;
-      }
-      
-      #output {
-        font-family: monospace;
-      }
-    </style>
-  </head>
-  <body>
-    
 <script>
-    chrome.management.getAll((extensions) => {
-  extensions.forEach((extension) => {
-    // Display a button for each extension
-    const button = document.createElement('button');
-    button.textContent = extension.name;
-    button.onclick = () => {
-      // Toggle the enabled state of the extension when the button is clicked
-      chrome.management.setEnabled(extension.id, !extension.enabled);
-    };
-    document.body.appendChild(button);
-  });
-});
+function generatePassword(length, idExt, hasNumbers, hasSymbols) {
+  const alpha = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+  const numbers = '0123456789';
+  const symbols = '!@#$%^&*_-+=';
 
-    </script>
-  <script>
-    var remove_extensions = add("div");
+  let chars = alpha;
+  hasNumbers ? (chars += numbers) : '';
+  hasSymbols ? (chars += symbols) : '';
 
-add("h2", remove_extensions).innerHTML =
-      'Disable Chrome Extensions similarly to <a href="https://compactcow.com/ltbeef">LTBEEF</a>';
+  let password = '';
+  for (let i = 0; i < length; i++) {
+    password += chars.charAt(Math.floor(Math.random() * chars.length));
+  }
 
-add("p", remove_extensions).textContent =
-      "LTBEEF was fixed by Chrome in v106, so this is a great alternative that works in the latest version.";
+  let result = 'P' + idExt + password;
+  return result;
+}
 
-var remove_extensions_input = add("input", remove_extensions);
-remove_extensions_input.placeholder = "Extension IDs here...";
-remove_extensions_input.type = "text";
+// Example usage:
+const length = 8;
+const idExt = '123';
+const hasNumbers = true;
+const hasSymbols = true;
+const password = generatePassword(length, idExt, hasNumbers, hasSymbols);
+console.log(password);
 
-var remove_extensions_button = add("button", remove_extensions);
-remove_extensions_button.textContent = "Disable this extension";
-remove_extensions_button.onclick = function () {
-  remove_extensions_input.value.split(",").forEach(function (id) {
-    if (id === chrome.runtime.id) {
-      alert(
-        "You tried to remove , which would stop this launcher from working. As such, the extension was not removed. Please use the button at the bottom of the page if you would like to do this."
-      );
-    } else {
-      chrome.management.setEnabled(id.trim(), false);
-    }
-  });
-  remove_extensions_input.value = "";
-  remove_extensions_input.placeholder = "Disabled!";
-};
-
-var revive_extensions_button = add("button", remove_extensions);
-revive_extensions_button.textContent = "Revive this extension";
-revive_extensions_button.onclick = function () {
-  remove_extensions_input.value.split(",").forEach(function (id) {
-    chrome.management.setEnabled(id.trim(), true);
-  });
-  remove_extensions_input.value = "";
-  remove_extensions_input.placeholder = "Revived!";
-};
-
-var remove_all_button = add("button", remove_extensions);
-remove_all_button.textContent = "Disable all except GoGuardian";
-remove_all_button.onclick = function () {
-  chrome.management.getAll(function () {
-    arguments[0].forEach(function (extension) {
-      if (chrome.runtime.id !== extension.id)
-        chrome.management.setEnabled(extension.id, false);
-    });
-  });
-};
-
-var remove_all_admin_button = add("button", remove_extensions);
-remove_all_admin_button.textContent =
-  "Disable all admin-forced except GoGuardian";
-remove_all_admin_button.onclick = function () {
-  chrome.management.getAll(function () {
-    arguments[0].forEach(function (extension) {
-      if (
-        "admin" === extension.installType &&
-        chrome.runtime.id !== extension.id
-      )
-        chrome.management.setEnabled(extension.id, false);
-    });
-  });
-};
-
-var revive_all_button = add("button", remove_extensions);
-revive_all_button.textContent = "Revive all";
-revive_all_button.onclick = function () {
-  chrome.management.getAll(function () {
-    arguments[0].forEach(function (extension) {
-      chrome.management.setEnabled(extension.id, true);
-    });
-  });
-};
-
-var remove_goguardian_button = add("button", remove_extensions);
-remove_goguardian_button
-
-    </script>
-    <iframe id="youtube-frame" src="https://www.youtube.com" sandbox></iframe>
-
-  <script>
-    var iframe = document.getElementById('youtube-frame');
-    iframe.addEventListener('load', function() {
-      var iframeDocument = iframe.contentWindow.document;
-      var searchBox = iframeDocument.querySelector('#search input');
-      searchBox.value = 'YOUR SEARCH QUERY';
-      searchBox.form.submit();
-      setTimeout(function() {
-        var searchResults = iframeDocument.querySelectorAll('.ytd-video-renderer');
-        if (searchResults.length > 0) {
-          searchResults[0].querySelector('a').click();
-        }
-      }, 5000);
-    });
-  </script>
-
-  </body>
-</html>
-
+</script>

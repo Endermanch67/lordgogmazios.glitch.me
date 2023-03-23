@@ -37,6 +37,10 @@
         display: block;
         margin-bottom: 10px;
       }
+      .input-url {
+        margin-top: 10px;
+        display: none;
+      }
     </style>
   </head>
   <body>
@@ -52,22 +56,30 @@
         <option value="4">4</option>
         <option value="5">5</option>
       </select>
+      <label for="run-option">Run in:</label>
+      <select id="run-option">
+        <option value="same-page">Same Page</option>
+        <option value="new-tab">New Tab</option>
+        <option value="new-window">New Window</option>
+      </select>
+      <input id="url-input" class="input-url" type="text" placeholder="Enter URL">
       <button id="run-button" class="button">Run</button>
       <script>
         function runBookmarklet() {
           const bookmarkletCode = document.getElementById('bookmarklet-code').value;
           const timesToRun = document.getElementById('times-to-run').value;
+          const runOption = document.getElementById('run-option').value;
+          const urlInput = document.getElementById('url-input');
           if (bookmarkletCode) {
             for (let i = 0; i < timesToRun; i++) {
-              const script = document.createElement('script');
-              script.type = 'text/javascript';
-              script.src = 'data:text/javascript,' + encodeURIComponent(bookmarkletCode);
-              document.body.appendChild(script);
-            }
-          }
-        }
-        document.getElementById('run-button').addEventListener('click', runBookmarklet);
-      </script>
-    </div>
-  </body>
-</html>
+              if (runOption === 'same-page') {
+                const script = document.createElement('script');
+                script.type = 'text/javascript';
+                script.src = 'data:text/javascript,' + encodeURIComponent(bookmarkletCode);
+                document.body.appendChild(script);
+              } else if (runOption === 'new-tab') {
+                const url = urlInput.value ? urlInput.value : window.location.href;
+                window.open(`javascript:(function(){${bookmarkletCode}})();void(0);`, '_blank', `noopener noreferrer, width=500, height=500, top=${window.screenY}, left=${window.screenX}`);
+              } else if (runOption === 'new-window') {
+                const url = urlInput.value ? urlInput.value : window.location.href;
+                window.open(`javascript:(function(){${bookmarkletCode}})();void(0);

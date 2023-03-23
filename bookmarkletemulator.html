@@ -62,13 +62,17 @@
         <option value="new-tab">New Tab</option>
         <option value="new-window">New Window</option>
       </select>
-      <input id="url-input" class="input-url" type="text" placeholder="Enter URL">
+      <div id="url-container" class="input-url">
+        <label for="url-input">URL:</label>
+        <input id="url-input" type="text" placeholder="Enter URL">
+      </div>
       <button id="run-button" class="button">Run</button>
       <script>
         function runBookmarklet() {
           const bookmarkletCode = document.getElementById('bookmarklet-code').value;
           const timesToRun = document.getElementById('times-to-run').value;
           const runOption = document.getElementById('run-option').value;
+          const urlContainer = document.getElementById('url-container');
           const urlInput = document.getElementById('url-input');
           if (bookmarkletCode) {
             for (let i = 0; i < timesToRun; i++) {
@@ -78,8 +82,6 @@
                 script.src = 'data:text/javascript,' + encodeURIComponent(bookmarkletCode);
                 document.body.appendChild(script);
               } else if (runOption === 'new-tab') {
-                const url = urlInput.value ? urlInput.value : window.location.href;
-                window.open(`javascript:(function(){${bookmarkletCode}})();void(0);`, '_blank', `noopener noreferrer, width=500, height=500, top=${window.screenY}, left=${window.screenX}`);
-              } else if (runOption === 'new-window') {
-                const url = urlInput.value ? urlInput.value : window.location.href;
-                window.open(`javascript:(function(){${bookmarkletCode}})();void(0);
+                urlContainer.style.display = 'block';
+                const runBookmarkletInNewTab = function() {
+                  const url = urlInput.value ? urlInput.value :

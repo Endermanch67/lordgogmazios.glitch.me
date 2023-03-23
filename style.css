@@ -51,3 +51,13 @@ h2 {
   text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 40px #0ff, 0 0 80px #0ff,
     0 0 90px #0ff, 0 0 100px #0ff, 0 0 150px #0ff;
 }
+
+a {
+  background-color: #111;
+  color: #fff;
+  padding: 10px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px #fff;
+  text-shadow: 0 0 15px #fff;
+  animation: neon 1.5s ease-in-out infinite alternate;
+}

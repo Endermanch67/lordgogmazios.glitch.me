@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Bookmarklet Emulator</title>
+  </head>
+  <body>
+    <h1>Bookmarklet Emulator</h1>
+    <p>Paste your bookmarklet code below:</p>
+    <textarea id="bookmarklet-code" rows="10" cols="50"></textarea>
+    <br><br>
+    <label for="times-to-run">Times to Run:</label>
+    <select id="times-to-run">
+      <option value="1">1</option>
+      <option value="2">2</option>
+      <option value="3">3</option>
+      <option value="4">4</option>
+      <option value="5">5</option>
+    </select>
+    <br><br>
+    <label for="run-location">Run Location:</label>
+    <select id="run-location">
+      <option value="current-tab">Current Tab</option>
+      <option value="new-tab">New Tab</option>
+      <option value="new-window">New Window</option>
+    </select>
+    <br><br>
+    <button onclick="runBookmarklet()">Run Bookmarklet</button>
+
+    <script>
+      function runBookmarklet() {
+        var bookmarkletCode = document.getElementById('bookmarklet-code').value;
+        var timesToRun = document.getElementById('times-to-run').value;
+        var runLocation = document.getElementById('run-location').value;
+
+        if (timesToRun <= 0) {
+          alert('Please enter a valid number of times to run.');
+          return;
+        }
+
+        var currentUrl = window.location.href;
+        var encodedUrl = encodeURIComponent(currentUrl);
+
+        for (var i = 0; i < timesToRun; i++) {
+          if (runLocation === 'current-tab') {
+            window.location.href = 'javascript:(' + bookmarkletCode + ')();';
+          } else if (runLocation === 'new-tab') {
+            window.open('javascript:(' + bookmarkletCode + ')();void(0);');
+          } else if (runLocation === 'new-window') {
+            window.open('javascript:(' + bookmarkletCode + ')();void(0);', '_blank');
+          }
+        }
+      }
+    </script>
+  </body>
+</html>

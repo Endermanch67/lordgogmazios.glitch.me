@@ -1,60 +1,71 @@
 <!DOCTYPE html>
 <html>
-  <link rel="stylesheet" href="style.css" />
+  
+    <link rel="stylesheet" href="style.css" />
   <head>
-    <title>Bookmarklet Emulator</title>
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-  </head>
-  <body>
-    <label for="bookmarklet-input">Enter Bookmarklet Code:</label>
-    <input type="text" id="bookmarklet-input">
-    <button id="run-button">Run Bookmarklet</button>
+    <title>Not Found!</title>
+  <h1>Bookmarklet Emulator</h1>
+<label for="bookmarklet-input">Enter Bookmarklet Code:</label>
+<textarea id="bookmarklet-input" contenteditable="true"></textarea>
+<button id="run-button">Run Bookmarklet</button>
+<button id="clear-button">Clear Input</button>
 
-    <script>
-      $('#run-button').click(function() {
-        var bookmarkletCode = $('#bookmarklet-input').val();
-        eval(bookmarkletCode);
-      });
-    </script>
-    
-     <h1>Bookmarklet Converter</h1>
+<script>
+  $('#run-button').click(function() {
+    var bookmarkletCode = $('#bookmarklet-input').val();
+    eval(bookmarkletCode);
+  });
+
+  $('#clear-button').click(function() {
+    $('#bookmarklet-input').val('');
+  });
+</script>
+
+
+    <h1>Bookmarklet Converter</h1>
     <label for="input">Input:</label>
     <textarea id="input" placeholder="Enter JavaScript code here"></textarea>
     <button onclick="jsToBookmarklet()">Convert to Bookmarklet</button>
     <label for="output">Bookmarklet:</label>
     <textarea id="output" placeholder="Result will appear here"></textarea>
     <button onclick="runBookmarklet()">Run Bookmarklet</button>
+    <button onclick="clearInputs()">Clear Inputs</button>
     <script>
       function jsToBookmarklet() {
         const js = document.getElementById("input").value;
         const bookmarklet = `javascript:${encodeURIComponent(js)}`;
         document.getElementById("output").value = bookmarklet;
       }
-      
+
       function runBookmarklet() {
         const bookmarklet = document.getElementById("output").value;
         window.location.href = bookmarklet;
       }
-    </script>
-  </body>
-</html>
-  
-  
-  <html>
-    <br>
-<br>
-    <label for="bookmarkletInput">Enter bookmarklet code:</label>
-<textarea id="bookmarkletInput"></textarea>
-<button onclick="bookmarkletToJs()">Convert to JS</button>
-<label for="jsOutput">JS output:</label>
-<textarea id="jsOutput"></textarea>
 
-<script>
-  function bookmarkletToJs() {
-    const bookmarklet = document.getElementById("bookmarkletInput").value;
-    const js = decodeURIComponent(bookmarklet.replace(/^javascript:/, ""));
-    document.getElementById("jsOutput").value = js;
-  }
-</script>
+      function clearInputs() {
+        document.getElementById("input").value = '';
+        document.getElementById("output").value = '';
+      }
+    </script>
+
+    <h1>Bookmarklet to JS Converter</h1>
+    <label for="bookmarkletInput">Enter bookmarklet code:</label>
+    <textarea id="bookmarkletInput"></textarea>
+    <button onclick="bookmarkletToJs()">Convert to JS</button>
+    <label for="jsOutput">JS output:</label>
+    <textarea id="jsOutput"></textarea>
+    <button onclick="clearBookmarkletInputs()">Clear Inputs</button>
+    <script>
+      function bookmarkletToJs() {
+        const bookmarklet = document.getElementById("bookmarkletInput").value;
+        const js = decodeURIComponent(bookmarklet.replace(/^javascript:/, ""));
+        document.getElementById("jsOutput").value = js;
+      }
+
+      function clearBookmarkletInputs() {
+        document.getElementById("bookmarkletInput").value = '';
+        document.getElementById("jsOutput").value = '';
+      }
+    </script>
   </body>
 </html>

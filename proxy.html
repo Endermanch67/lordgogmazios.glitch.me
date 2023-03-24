@@ -31,7 +31,99 @@
 </html>
   
 
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Bookmarklet Converter</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+      }
+      
+      h1 {
+        text-align: center;
+      }
+      
+      label {
+        display: block;
+        margin-bottom: 10px;
+      }
+      
+      textarea {
+        display: block;
+        margin-bottom: 20px;
+        width: 100%;
+        height: 150px;
+        border: 1px solid #ccc;
+        padding: 5px;
+        font-size: 14px;
+      }
+      
+      button {
+        display: block;
+        margin-bottom: 20px;
+        padding: 5px 10px;
+        font-size: 16px;
+        border: none;
+        background-color: #007bff;
+        color: #fff;
+        cursor: pointer;
+        border-radius: 3px;
+      }
+      
+      button:hover {
+        background-color: #0069d9;
+      }
+      
+      #output {
+        font-family: monospace;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Bookmarklet Converter</h1>
+    <label for="input">Input:</label>
+    <textarea id="input" placeholder="Enter JavaScript code here"></textarea>
+    <button onclick="jsToBookmarklet()">Convert to Bookmarklet</button>
+    <label for="output">Bookmarklet:</label>
+    <textarea id="output" placeholder="Result will appear here"></textarea>
+    <button onclick="runBookmarklet()">Run Bookmarklet</button>
+    <script>
+      function jsToBookmarklet() {
+        const js = document.getElementById("input").value;
+        const bookmarklet = `javascript:${encodeURIComponent(js)}`;
+        document.getElementById("output").value = bookmarklet;
+      }
+      
+      function runBookmarklet() {
+        const bookmarklet = document.getElementById("output").value;
+        window.location.href = bookmarklet;
+      }
+    </script>
+  </body>
+</html>
+  
+  
+  <html>
+    <br>
+<br>
+    <label for="bookmarkletInput">Enter bookmarklet code:</label>
+<textarea id="bookmarkletInput"></textarea>
+<button onclick="bookmarkletToJs()">Convert to JS</button>
+<label for="jsOutput">JS output:</label>
+<textarea id="jsOutput"></textarea>
 
+<script>
+  function bookmarkletToJs() {
+    const bookmarklet = document.getElementById("bookmarkletInput").value;
+    const js = decodeURIComponent(bookmarklet.replace(/^javascript:/, ""));
+    document.getElementById("jsOutput").value = js;
+  }
+</script>
+	<label for="url">About:Blank Embed:</label>
+	<input type="text" id="url">
+	<button onclick="loadWebsite()">Load Website</button>
 
 <script>
 	function loadWebsite() {

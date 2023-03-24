@@ -1,139 +1,31 @@
-<!DOCTYPE html>
-<html>
-  <link rel="stylesheet" href="style.css" />
-  <head>
-    <title>Bookmarklet Emulator</title>
-    <style>
-      body {
-        font-family: Arial, sans-serif;
-        margin: 0;
-        padding: 0;
-      }
-      .container {
-        max-width: 600px;
-        margin: 0 auto;
-        padding: 20px;
-      }
-      .input {
-        margin-bottom: 10px;
-        width: 100%;
-        box-sizing: border-box;
-        padding: 5px;
-        font-size: 16px;
-      }
-      .button {
-        background-color: #4caf50;
-        color: white;
-        border: none;
-        padding: 10px 20px;
-        text-align: center;
-        text-decoration: none;
-        display: inline-block;
-        font-size: 16px;
-        margin: 4px 2px;
-        cursor: pointer;
-        border-radius: 5px;
-      }
-    </style>
-  </head>
-  <body>
-    <div class="container">
-      <h1>Bookmarklet Emulator</h1>
-      <p>Paste your bookmarklet code below:</p>
-      <textarea id="bookmarklet-code" class="input"></textarea>
-      <button id="run-button" class="button">Run</button>
-      <script>
-        function runBookmarklet() {
-          const bookmarkletCode =
-            document.getElementById("bookmarklet-code").value;
-          if (bookmarkletCode) {
-            const script = document.createElement("script");
-            script.type = "text/javascript";
-            script.src =
-              "data:text/javascript," + encodeURIComponent(bookmarkletCode);
-            document.body.appendChild(script);
-          }
-        }
-        document
-          .getElementById("run-button")
-          .addEventListener("click", runBookmarklet);
-      </script>
-    </div>
-  </body>
-</html>
 
 
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="UTF-8" />
-    <title>Bookmarklet Converter</title>
-    <style>
-      body {
-        font-family: Arial, sans-serif;
-      }
+  <link rel="stylesheet" href="style.css"
+<head>
+	<meta charset="utf-8">
+	<title>Bookmarklet Emulator</title>
+</head>
+<body>
+	<h1>Bookmarklet Emulator</h1>
+	<textarea id="bookmarklet-code" placeholder="Enter bookmarklet code here"></textarea>
+	<br>
+	<button id="run-button">Run Bookmarklet</button>
 
-      h1 {
-        text-align: center;
-      }
-
-      label {
-        display: block;
-        margin-bottom: 10px;
-      }
-
-      textarea {
-        display: block;
-        margin-bottom: 20px;
-        width: 100%;
-        height: 150px;
-        border: 1px solid #ccc;
-        padding: 5px;
-        font-size: 14px;
-      }
-
-      button {
-        display: block;
-        margin-bottom: 20px;
-        padding: 5px 10px;
-        font-size: 16px;
-        border: none;
-        background-color: #007bff;
-        color: #fff;
-        cursor: pointer;
-        border-radius: 3px;
-      }
-
-      button:hover {
-        background-color: #0069d9;
-      }
-
-      #output {
-        font-family: monospace;
-      }
-    </style>
-  </head>
-  <body>
-    <h1>Bookmarklet Converter</h1>
-    <label for="input">Input:</label>
-    <textarea id="input" placeholder="Enter JavaScript code here"></textarea>
-    <button onclick="jsToBookmarklet()">Convert to Bookmarklet</button>
-    <label for="output">Bookmarklet:</label>
-    <textarea id="output" placeholder="Result will appear here"></textarea>
-    <button onclick="runBookmarklet()">Run Bookmarklet</button>
-    <script>
-      function jsToBookmarklet() {
-        const js = document.getElementById("input").value;
-        const bookmarklet = `javascript:${encodeURIComponent(js)}`;
-        document.getElementById("output").value = bookmarklet;
-      }
-
-      function runBookmarklet() {
-        const bookmarklet = document.getElementById("output").value;
-        window.location.href = bookmarklet;
-      }
-    </script>
-  </body>
+	<script>
+		document.getElementById("run-button").addEventListener("click", function() {
+			var bookmarkletCode = document.getElementById("bookmarklet-code").value;
+			if (bookmarkletCode) {
+				try {
+					eval(bookmarkletCode);
+				} catch (error) {
+					alert("Error executing bookmarklet: " + error);
+				}
+			}
+		});
+	</script>
+</body>
 </html>
 
 <html>

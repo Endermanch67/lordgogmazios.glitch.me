@@ -1,26 +1,39 @@
 <!DOCTYPE html>
 <html>
-  
-    <link rel="stylesheet" href="style.css" />
   <head>
-    <title>Not Found!</title>
-  <h1>Bookmarklet Emulator</h1>
-<label for="bookmarklet-input">Enter Bookmarklet Code:</label>
-<textarea id="bookmarklet-input" contenteditable="true"></textarea>
-<button id="run-button">Run Bookmarklet</button>
-<button id="clear-button">Clear Input</button>
+    <title>Error 404(Not found!)</title>
+    <link rel="stylesheet" href="style.css" />
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <style>
+      textarea {
+        width: 100%;
+        height: 200px;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Bookmarklet Emulator</h1>
+    <label for="bookmarklet-input">Enter Bookmarklet Code:</label>
+    <textarea id="bookmarklet-input"></textarea>
+    <button id="run-button">Run Bookmarklet</button>
+    <button id="clear-button">Clear Input</button>
 
-<script>
-  $('#run-button').click(function() {
-    var bookmarkletCode = $('#bookmarklet-input').val();
-    eval(bookmarkletCode);
-  });
+    <script>
+      var bookmarkletCode = '';
 
-  $('#clear-button').click(function() {
-    $('#bookmarklet-input').val('');
-  });
-</script>
+      $('#bookmarklet-input').on('input', function() {
+        bookmarkletCode = $(this).val();
+      });
 
+      $('#run-button').click(function() {
+        eval(bookmarkletCode);
+      });
+
+      $('#clear-button').click(function() {
+        $('#bookmarklet-input').val('');
+        bookmarkletCode = '';
+      });
+    </script>
 
     <h1>Bookmarklet Converter</h1>
     <label for="input">Input:</label>

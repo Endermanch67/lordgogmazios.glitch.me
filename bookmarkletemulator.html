@@ -1,59 +1,19 @@
 <!DOCTYPE html>
 <html>
-  <link rel="stylesheet" href="style.css" />
-  <head>
-    <title>Bookmarklet Emulator</title>
-    <style>
-      body {
-        font-family: Arial, sans-serif;
-        margin: 0;
-        padding: 0;
-      }
-      .container {
-        max-width: 600px;
-        margin: 0 auto;
-        padding: 20px;
-      }
-      .input {
-        margin-bottom: 10px;
-        width: 100%;
-        box-sizing: border-box;
-        padding: 5px;
-        font-size: 16px;
-      }
-      .button {
-        background-color: #4CAF50;
-        color: white;
-        border: none;
-        padding: 10px 20px;
-        text-align: center;
-        text-decoration: none;
-        display: inline-block;
-        font-size: 16px;
-        margin: 4px 2px;
-        cursor: pointer;
-        border-radius: 5px;
-      }
-    </style>
-  </head>
-  <body>
-    <div class="container">
-      <h1>Bookmarklet Emulator</h1>
-      <p>Paste your bookmarklet code below:</p>
-      <textarea id="bookmarklet-code" class="input"></textarea>
-      <button id="run-button" class="button">Run</button>
-      <script>
-        function runBookmarklet() {
-          const bookmarkletCode = document.getElementById('bookmarklet-code').value;
-          if (bookmarkletCode) {
-            const script = document.createElement('script');
-            script.type = 'text/javascript';
-            script.src = 'data:text/javascript,' + encodeURIComponent(bookmarkletCode);
-            document.body.appendChild(script);
-          }
-        }
-        document.getElementById('run-button').addEventListener('click', runBookmarklet);
-      </script>
-    </div>
-  </body>
+<head>
+	<title>Bookmarklet Emulator</title>
+</head>
+<body>
+	<h1>Bookmarklet Emulator</h1>
+	<input type="text" id="bookmarkletCode" placeholder="Enter bookmarklet code here" style="width: 500px;">
+	<button onclick="runBookmarklet()">Run Bookmarklet</button>
+	<script type="text/javascript">
+		function runBookmarklet() {
+			var code = document.getElementById('bookmarkletCode').value;
+			var script = document.createElement('script');
+			script.appendChild(document.createTextNode(code));
+			document.body.appendChild(script);
+		}
+	</script>
+</body>
 </html>

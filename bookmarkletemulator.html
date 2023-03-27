@@ -12,28 +12,7 @@
     </style>
   </head>
   <body>
-    <h1>Bookmarklet Emulator</h1>
-    <label for="bookmarklet-input">Enter Bookmarklet Code:</label>
-    <textarea id="bookmarklet-input"></textarea>
-    <button id="run-button">Run Bookmarklet</button>
-    <button id="clear-button">Clear Input</button>
-
-    <script>
-      var bookmarkletCode = '';
-
-      $('#bookmarklet-input').on('input', function() {
-        bookmarkletCode = $(this).val();
-      });
-
-      $('#run-button').click(function() {
-        eval(bookmarkletCode);
-      });
-
-      $('#clear-button').click(function() {
-        $('#bookmarklet-input').val('');
-        bookmarkletCode = '';
-      });
-    </script>
+  
 
     <h1>Bookmarklet Converter</h1>
     <label for="input">Input:</label>

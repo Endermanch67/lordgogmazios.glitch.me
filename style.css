@@ -62,24 +62,7 @@ a {
   animation: neon 1.5s ease-in-out infinite alternate;
 }
 
-h1 {
+h5 {
 
 font-size:10px
-}
-
-.flicker {
-  animation-name: flicker;
-  animation-duration: 1s;
-  animation-iteration-count: infinite;
-  animation-timing-function: linear;
-}
-
-@keyframes flicker {
-  0% { opacity: 1; }
-  50% { opacity: 0.5; }
-  100% { opacity: 1; }
-}
-
-.element {
-  animation: flicker 0.5s infinite;
 }
